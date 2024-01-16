@@ -1,3 +1,24 @@
 {%extends "category.html"%}
 
+{% block css %}<link rel="stylesheet" href="{{ url_for('static', filename= 'css/chickens.css') }}">{%endblock%}
 {% block chicken_indicator_style %}"visibility: visible;"{% endblock chicken_indicator_style %}
+
+{%block content%}
+    {{ super() }} {# renders the top row#}
+    <section class="row">
+        <div id="egg-log-section" class="section">
+            <h2 class="section-label">Log Eggs</h2>
+            <div class="egg-container">
+                <input type="number" id="eggs-to-log" name="eggs-to-log" step=1 value=5>
+                <div id="egg-buttons">
+                    <div class="egg-container">
+                        <button id="add-egg" class="egg-button">+1</button>
+                        <button id="subtract-egg" class="egg-button">-1</button>
+                    </div>
+                    <button id="log-eggs" class="egg-button">Log</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{%endblock%}

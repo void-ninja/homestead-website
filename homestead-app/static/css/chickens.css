@@ -1,0 +1,48 @@
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#egg-log-section{
+    width: 30vw;
+}
+
+.egg-container{
+    display: flex;
+    align-items: center;
+}
+
+#eggs-to-log {
+    font-family: comfortaa;
+    font-weight: 700;
+    font-size: xx-large;
+    width: 2em;
+    height: fit-content;
+
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#egg-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.egg-button {
+    font-family: comfortaa;
+    font-weight: 700;
+    font-size: xx-large;
+    background-color: var(--dark-orange);
+    color: var(--cream);
+    border: 4px solid;
+    border-radius: 10px;
+}
+
+#log-eggs {
+    background-color: var(--light-green);
+}
+
+

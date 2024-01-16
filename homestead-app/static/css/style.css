@@ -16,7 +16,7 @@
 }
 
 body {
-    background-color: var(--light-orange);
+    background-color: var(--dark-orange);
     font-family: comfortaa;
     letter-spacing: 1px;
     margin: 0;
@@ -29,13 +29,13 @@ body {
 
 .section{
     height: var(--section-height);
-    background-color: var(--dark-orange);
+    background-color: var(--light-orange);
     color: var(--cream);
     padding: 6px 20px 6px 20px;
     margin: 10px 0 0 10px;
 }
 
-.dt-label {
+.section-label {
     font-size: medium;
     margin: 4px 0 0 0;
 }
@@ -105,4 +105,14 @@ body {
     width: var(--category-image-size);
     background-color: var(--light-green);
     margin-bottom: 20px;
+}
+
+.section-blocker{
+    background-color: rgba(51, 51, 51, 0.493);
+    z-index: 3;
+    position: absolute;
+    height: var(--section-height);
+    padding: 6px 20px;
+    margin-left: -20px;
+    margin-top: -6px;
 }
