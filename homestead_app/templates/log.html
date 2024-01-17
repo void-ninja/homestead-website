@@ -1,0 +1,10 @@
+{%extends 'base.html'%}
+
+{%block content%}
+    <div class='section back-button-section'>
+        <button class='back-button' onclick='location.href={%block url_back%}#{%endblock%}'>Back</button>
+    </div>
+    <section class='logs'>
+        {%block log_content%}{%endblock%}
+    </section>
+{%endblock%}

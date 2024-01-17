@@ -1,0 +1,239 @@
+:root{
+    /* CSS HEX */
+    --light-green: #606c38ff;
+    --dark-green: #283618ff;
+    --cream: #fefae0ff;
+    --light-orange: #dda15eff;
+    --dark-orange: #bc6c25ff;
+
+    --section-height: 160px;
+    --category-image-size: 70px;
+}
+
+@font-face {
+    font-family: custom;
+    src: url(../fonts/Comfortaa-VariableFont_wght.ttf);
+}
+
+body {
+    background-color: var(--dark-orange);
+    font-family: custom, sans-serif;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+button {
+    font-family: custom;
+    font-weight: 700;
+    font-size: xx-large;
+    background-color: var(--dark-orange);
+    color: var(--cream);
+    border: none;
+    padding: 5px 10px;
+    margin: -1px 5px 5px -1px;
+    box-shadow: rgba(0,0,0,0.2) 2px 3px;
+}
+
+button:active{
+    transform: translate(2px,3px);
+    box-shadow: none;
+    border: none;
+    margin: -1px 5px 5px -2px;
+    background-color: var(--light-green);
+}
+
+/* category page */
+
+.row{
+    display: flex;
+    justify-content: start;
+    padding: 10px 10px 0 10px;
+    column-gap: 10px;
+}
+
+.section{
+    height: var(--section-height);
+    background-color: var(--light-orange);
+    color: var(--cream);
+    padding: 6px 20px 6px 20px;
+}
+
+.section-label {
+    font-size: medium;
+    margin: 4px 0 0 0;
+}
+
+.large-info-text {
+    text-align: center;
+    font-size: 4.3em;
+    font-weight: 700;
+    margin-top: 30px;
+}
+
+#date-section{
+    width: 30vw;
+}
+
+#time-section{
+    width: 25vw;
+}
+
+#categories-section{
+    width: 20vw;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#categories-label{
+    font-size: xxx-large;
+    text-align: center;
+    margin: 4px 0 0 0;
+    z-index: 2;
+}
+
+#categories-icons{
+    text-align: center;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    z-index: 2;
+}
+
+.categories-icon{
+    height: var(--category-image-size);
+}
+
+.category-link{
+    height: var(--category-image-size);
+    width: var(--category-image-size);
+}
+
+#categories-indicators{
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+    width: inherit;
+    height: inherit;
+    text-align: center;
+    padding-bottom: 20px;
+} 
+
+.categories-indicator{
+    height: var(--category-image-size);
+    width: var(--category-image-size);
+    background-color: var(--light-green);
+    margin-bottom: 20px;
+}
+
+.section-blocker{
+    background-color: rgba(51, 51, 51, 0.493);
+    z-index: 3;
+    position: absolute;
+    height: var(--section-height);
+    padding: 6px 20px;
+    margin-left: -20px;
+    margin-top: -6px;
+}
+
+/* log view page */
+
+.back-button-section {
+    width: 7vw;
+    height: 7vw;
+    display: flex;
+    text-align: center;
+    margin: 10px 0 0 10px;
+}
+
+.back-button {
+    font-weight: 700;
+    font-size: xx-large;
+    margin: -1px 5px 5px -1px;
+}
+
+.back-button:active{
+    margin: -1px 5px 5px -2px;
+}
+
+table {
+    border-spacing: 5px;
+    margin-left: 5px;
+    color: var(--cream);
+    font-size: large;
+}
+
+th, td {
+    background-color: var(--light-orange);
+    padding: 5px 10px;
+}
+
+td {
+    height: 42px;
+}
+
+.notes-button {
+    font-weight: 700;
+    font-size: large;
+    padding: 5px 10px;
+    margin-top: -2px;
+    margin-left: -2px;
+}
+
+.notes-button:active {
+    margin-top: -2px;
+    margin-left: -2px;
+}
+
+.screen-overlay{
+    position: absolute; /* Sit on top of the page content */
+    display: none;
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 1; /* Specify a stack order in case you're using a different order for other elements */
+}
+
+.note-display {
+    position: absolute;
+    visibility: hidden;
+    background-color: var(--light-orange);
+    border: 2px solid var(--light-green);
+    height: 35vw;
+    width: 35vw;
+    padding: 1vw;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    z-index: 2;
+}
+
+.close-button {
+    position: absolute;
+    right: 1vw;
+    top: 1vw;
+    height: 3vw;
+    width: 3vw;
+    font-size: 2vw;
+}
+
+.edit-button {
+    font-weight: 700;
+    font-size: large;
+    padding: 5px 10px;
+    margin-top: 2px;
+    margin-left: 2px;
+}
+
+.edit-button:active {
+    margin-top: 2px;
+    margin-left: 2px;
+}

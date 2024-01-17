@@ -1,0 +1,48 @@
+{%extends 'log.html'%}
+
+{%block url_back%}"{{ url_for('chickens') }}"{%endblock%}
+
+{%block log_content%}
+    <table>
+        <tr>
+            <th style='visibility: hidden;'></th>
+            <th>Date</th>
+            <th>Number of eggs</th>
+        </tr>
+        {% for log in eggs%} {# log = [collection_date, amount, notes]#}
+            <tr>
+                <td>
+                    <button class='edit-button'>Edit</button>
+                </td>
+                <td>{{log[0]}}</td>
+                <td>{{log[1]}}</td>
+                {% if log[2] %}
+                    <td>
+                        <button class='notes-button' type='button' onclick='showNote( "{{ log[0] }}" )'>Notes</button>
+                    </td>
+                    <div id='{{ [log[0],"screen_overlay"]|join }}' class='screen-overlay'></div>
+                    <div id='{{ [log[0],"note_display"]|join }}' class='note-display'>
+                        <button class='close-button' type='button' onclick='hideNote( "{{ log[0] }}" )'>X</button>
+                        <p class='note-text'>{{ log[2] }}</p>
+                    </div>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+
+{%endblock%}
+
+{%block script%}
+    function showNote(note_date) {
+        note_id = note_date + 'note_display';
+        overlay_id = note_date + 'screen_overlay';
+        document.getElementById(overlay_id).style.display = 'block';
+        document.getElementById(note_id).style.visibility = 'visible';
+    }
+    function hideNote(note_date) {
+        note_id = note_date + 'note_display';
+        overlay_id = note_date + 'screen_overlay';
+        document.getElementById(overlay_id).style.display = 'none';
+        document.getElementById(note_id).style.visibility = 'hidden';
+    }
+{%endblock%}
