@@ -1,8 +1,10 @@
 import os
 from datetime import datetime
 import pytz
+import re
 
-from flask import Flask, render_template, redirect, request
+
+from flask import Flask, render_template, redirect, request, url_for
 from . import db
 
 TIMEZONE = 'America/Detroit'
@@ -32,7 +34,7 @@ def create_app(test_config=None):
 
     @app.route('/')
     def index():
-        return redirect(Flask.url_for(app,'chickens'))    
+        return redirect(url_for('chickens'))    
     
     @app.route('/chickens', methods=('GET', 'POST'))
     def chickens():
@@ -65,7 +67,7 @@ def create_app(test_config=None):
                 else:
                     conn.execute('INSERT INTO eggs (collection_date, amount) VALUES (:date, :amount)',{'date': date,'amount': amount})
                     conn.commit()
-                return redirect(Flask.url_for(app,'chickens'))
+                return redirect(url_for('chickens'))
             
             elif request.form.get('form_id') == '2': # save note
                 new_note = request.form['notes']
@@ -74,26 +76,69 @@ def create_app(test_config=None):
                     conn.execute('UPDATE eggs SET notes = :note WHERE collection_date = :date',{'note': new_note, 'date': date})
                     conn.commit()
                 else:
-                    conn.execute('INSERT INTO eggs (collection_date, notes) VALUES (:date, :note)',{'note': new_note, 'date': date})
+                    conn.execute('INSERT INTO eggs (collection_date, amount, notes) VALUES (:date, 0, :note)',{'note': new_note, 'date': date})
                     conn.commit()
-                return redirect(Flask.url_for(app,'chickens'))
+                return redirect(url_for('chickens'))
             
         
         conn.close()
         
         return render_template('chickens.html', is_today=True, date=date, time=time, todays_eggs=eggs, notes=notes)
     
-    @app.route('/chickens/old', methods=('GET', 'POST'))
-    def chickens_old():
-        date =''
-        time =''
+    @app.route('/chickens/old/<target_date>', methods=('GET', 'POST'))
+    def chickens_old(target_date):
         eggs =''
         notes =''
+        date = re.sub('S', '/', target_date)
         
-        return render_template('chickens.html', is_today=False, date=date, time=time, todays_eggs=eggs, notes=notes)
+        conn = db.get_db()
+        days_eggs = conn.execute('SELECT * FROM eggs WHERE collection_date = :date',{'date': date}).fetchone()
+        
+        if days_eggs:
+            eggs = days_eggs[1] #get egg count
+            if days_eggs[2]:
+                notes = days_eggs[2] #get note
+                
+        
+        if request.method == 'POST':
+            
+            date = request.form.get('form_date')
+            
+            if request.form.get('form_id') == '1': #log eggs
+                amount = request.form['eggs-to-log']
+                
+                if days_eggs:
+                    amount = int(amount) + eggs
+                    conn.execute('UPDATE eggs SET amount = :amount WHERE collection_date = :date',{'amount': amount, 'date': date})
+                    conn.commit()
+                else:
+                    conn.execute('INSERT INTO eggs (collection_date, amount) VALUES (:date, :amount)',{'date': date,'amount': amount})
+                    conn.commit()
+                return redirect(url_for('chickens_old', target_date=target_date))
+            
+            elif request.form.get('form_id') == '2': # save note
+                new_note = request.form['notes']
+                
+                if days_eggs:
+                    conn.execute('UPDATE eggs SET notes = :note WHERE collection_date = :date',{'note': new_note, 'date': date})
+                    conn.commit()
+                else:
+                    conn.execute('INSERT INTO eggs (collection_date, amount, notes) VALUES (:date, 0, :note)',{'note': new_note, 'date': date})
+                    conn.commit()
+                return redirect(url_for('chickens_old', target_date=target_date))
+        
+        conn.close()
+        
+        return render_template('chickens.html', is_today=False, date=date, todays_eggs=eggs, notes=notes)
     
-    @app.route('/chickens/egg_log')
+    @app.route('/chickens/egg_log', methods=('GET', 'POST'))
     def egg_log():
+        if request.method == 'POST':
+            date = request.form.get('date')
+            date = re.sub('/', 'S', date)
+            return redirect(url_for('chickens_old', target_date=date))
+            
+        
         connection = db.get_db()
         logs = connection.execute('SELECT * FROM eggs').fetchall()
         connection.close()

@@ -7,6 +7,11 @@ input[type=number]::-webkit-outer-spin-button
     margin: 0;
 }
 
+#back-to-current-button{
+    height: 100%;
+    font-size: xxx-large;
+}
+
 #egg-log-section{
     width: 25vw;
 }

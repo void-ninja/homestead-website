@@ -12,7 +12,10 @@
         {% for log in eggs%} {# log = [collection_date, amount, notes]#}
             <tr>
                 <td>
-                    <button class='edit-button'>Edit</button>
+                    <form method='post'>
+                        <button class='edit-button' type='submit'>Edit</button>  
+                        <input type='hidden' name='date' value='{{log[0]}}'>
+                    </form>
                 </td>
                 <td>{{log[0]}}</td>
                 <td>{{log[1]}}</td>

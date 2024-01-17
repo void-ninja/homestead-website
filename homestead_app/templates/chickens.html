@@ -3,11 +3,13 @@
 {% block css %}<link rel='stylesheet' href='{{ url_for('static', filename= 'css/chickens.css') }}'>{%endblock%}
 {% block chicken_indicator_style %}'visibility: visible;'{% endblock chicken_indicator_style %}
 
-{% if not is_today %}
-    {%block time_section%}
-        <div class
-    {%endblock%}
-{%endif%}
+{%block time_section%}
+    {% if not is_today %}
+        <button id='back-to-current-button' class='egg_button' onclick='location.href="{{ url_for('chickens') }}"'>Back to current day</button>
+    {%else%}
+        {{ super() }}
+    {%endif%}
+{%endblock%}
 
 {%block content%}
     {{ super() }} {# renders the top row #}
@@ -26,6 +28,7 @@
                     </div>
                 </div>
                 <input type='hidden' name='form_id' value='1'>
+                <input type='hidden' name='form_date' value='{{ date }}'>
             </form>
 
         </div>
@@ -48,6 +51,7 @@
                     <textarea id='notes' name='notes' rows=5>{{ notes }}</textarea>
                 </div>
                 <input type='hidden' name='form_id' value='2'>
+                <input type='hidden' name='form_date' value='{{ date }}'>
             </form>
         </div>
     </section>
