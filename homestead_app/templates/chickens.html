@@ -13,14 +13,14 @@
 
 {%block content%}
     {{ super() }} {# renders the top row #}
-    <section class='row'>
+    <section class='row flex-container chicken-row'>
         <div id='egg-log-section' class='section'>
             <form method="post">
                 <h2 class='section-label'>Log Eggs</h2>
                 <div class='flex-container'>
                     <input type='number' id='eggs-to-log' name='eggs-to-log' step=1 value=0>
                     <div id='egg-buttons'>
-                        <div class='flex-container'>
+                        <div id='egg-button-panel' class='flex-container'>
                             <button id='add-egg' class='egg-button' onclick='increment(1)' type="button">+1</button>
                             <button id='subtract-egg' class='egg-button' onclick='decrement(1)' type="button">-1</button>
                         </div>
@@ -48,7 +48,7 @@
                 <h2 class='section-label'>{%if is_today%}Today's {%endif%}Notes:</h2>
                 <div class='flex-container'>
                     <button id='save-notes' type='submit'>Save</button>
-                    <textarea id='notes' name='notes' rows=5>{{ notes }}</textarea>
+                    <textarea id='notes' name='notes'>{{ notes }}</textarea>
                 </div>
                 <input type='hidden' name='form_id' value='2'>
                 <input type='hidden' name='form_date' value='{{ date }}'>

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <section class='row'>
+    <section class='row flex-container'>
         <div id='date-section' class='section'>
             <h2 class='section-label'>{%if is_today%}Today's {%endif%}Date:</h2>
             <p class='large-info-text'>{{date}}</p>
@@ -15,21 +15,20 @@
         </div>
 
         <div id='categories-section' class='section'>
-            <div class='section-blocker' style='width: 20vw;'></div> {# remove this to unblock the categories panel #}
+            <div class='section-blocker'></div> {# remove this to unblock the categories panel #}
             <p id='categories-label'>Categories</p>
 
             <div id='categories-icons'>
-                <a class='category-link' href='{{ url_for('chickens') }}'><img class='categories-icon' src='{{ url_for('static', filename='/images/chicken-icon.png') }}'></a>
-                <a class='category-link' href='{{ url_for('rabbits') }}'><img class='categories-icon' src='{{ url_for('static', filename='/images/rabbit-icon.png') }}'></a>
-                <a class='category-link' href='{{ url_for('garden') }}'><img class='categories-icon' src='{{ url_for('static', filename='/images/vegetable-icon.png') }}'></a>
+                <div class='categories-indicator' style={% block chicken_indicator_style%}'visibility:hidden;'{% endblock chicken_indicator_style%}>
+                    <a class='category-link' href='{{ url_for('chickens') }}'><img class='categories-icon' src='{{ url_for('static', filename='/images/chicken-icon.png') }}'></a>
+                </div>
+                <div class='categories-indicator' style={% block rabbit_indicator_style%}'visibility:hidden;'{% endblock rabbit_indicator_style%}>
+                    <a class='category-link' href='{{ url_for('rabbits') }}'><img class='categories-icon' src='{{ url_for('static', filename='/images/rabbit-icon.png') }}'></a>
+                </div>
+                <div class='categories-indicator' style={% block garden_indicator_style%}'visibility:hidden;'{% endblock garden_indicator_style%}>
+                    <a class='category-link' href='{{ url_for('garden') }}'><img class='categories-icon' src='{{ url_for('static', filename='/images/vegetable-icon.png') }}'></a>
+                </div>
             </div>
-
-            <div id='categories-indicators'>
-                <div class='categories-indicator' style={% block chicken_indicator_style%}'visibility:hidden;'{% endblock chicken_indicator_style%}></div>
-                <div class='categories-indicator' style={% block rabbit_indicator_style%}'visibility:hidden;'{% endblock rabbit_indicator_style%}></div>
-                <div class='categories-indicator' style={% block garden_indicator_style%}'visibility:hidden;'{% endblock garden_indicator_style%}></div>
-            </div>
-
         </div>
         
     </section>

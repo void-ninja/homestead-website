@@ -6,27 +6,45 @@
     <table>
         <tr>
             <th style='visibility: hidden;'></th>
+            <th style='visibility: hidden;'></th>
             <th>Date</th>
             <th>Number of eggs</th>
         </tr>
         {% for log in eggs%} {# log = [collection_date, amount, notes]#}
             <tr>
                 <td>
+                    <button class='log-button-small' type='button' onclick='showDeleteDisplay( "{{ log[0] }}" )'>Delete</button>  
+
+                    <div id='{{ [log[0],"screen_overlay"]|join }}' class='screen-overlay'></div>
+                    <div id='{{ [log[0],"delete_display"]|join }}' class='note-display delete-display'>
+                        <button class='close-button' type='button' onclick='hideDeleteDisplay( "{{ log[0] }}" )'>X</button>
+                        <h1 class='note-text'>Are you sure you want to delete the entry for {{ log[0] }}? This action is permanent!</h1>
+                        <div class='flex-container'>    
+                            <form method='post'>
+                                <button class='delete-button' type='submit' onclick='hideDeleteDisplay( "{{ log[0] }}" )'>Delete</button>
+                                <input type='hidden' name='date' value='{{log[0]}}'>
+                                <input type='hidden' name='form_id' value='delete'>
+                            </form>
+                            <button class='delete-button' type='button' onclick='hideDeleteDisplay( "{{ log[0] }}" )'>Cancel</button>
+                        </div>
+                    </div>
+                </td>
+                <td>
                     <form method='post'>
-                        <button class='edit-button' type='submit'>Edit</button>  
+                        <button class='log-button-small' type='submit'>Edit</button>  
                         <input type='hidden' name='date' value='{{log[0]}}'>
+                        <input type='hidden' name='form_id' value='edit'>
                     </form>
                 </td>
                 <td>{{log[0]}}</td>
                 <td>{{log[1]}}</td>
                 {% if log[2] %}
                     <td>
-                        <button class='notes-button' type='button' onclick='showNote( "{{ log[0] }}" )'>Notes</button>
+                        <button class='log-button-small' type='button' onclick='showNote( "{{ log[0] }}" )'>Notes</button>
                     </td>
-                    <div id='{{ [log[0],"screen_overlay"]|join }}' class='screen-overlay'></div>
                     <div id='{{ [log[0],"note_display"]|join }}' class='note-display'>
                         <button class='close-button' type='button' onclick='hideNote( "{{ log[0] }}" )'>X</button>
-                        <p class='note-text'>{{ log[2] }}</p>
+                        <h2 class='note-text'>{{ log[2] }}</h2>
                     </div>
                 {% endif %}
             </tr>
@@ -36,6 +54,7 @@
 {%endblock%}
 
 {%block script%}
+    {{ super() }}
     function showNote(note_date) {
         note_id = note_date + 'note_display';
         overlay_id = note_date + 'screen_overlay';
@@ -47,5 +66,18 @@
         overlay_id = note_date + 'screen_overlay';
         document.getElementById(overlay_id).style.display = 'none';
         document.getElementById(note_id).style.visibility = 'hidden';
+    }
+
+    function showDeleteDisplay(log_date) {
+        display_id = log_date + 'delete_display';
+        overlay_id = log_date + 'screen_overlay';
+        document.getElementById(overlay_id).style.display = 'block';
+        document.getElementById(display_id).style.visibility = 'visible';
+    }
+    function hideDeleteDisplay(log_date) {
+        display_id = log_date + 'delete_display';
+        overlay_id = log_date + 'screen_overlay';
+        document.getElementById(overlay_id).style.display = 'none';
+        document.getElementById(display_id).style.visibility = 'hidden';
     }
 {%endblock%}

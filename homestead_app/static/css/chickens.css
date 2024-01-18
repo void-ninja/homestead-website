@@ -7,6 +7,10 @@ input[type=number]::-webkit-outer-spin-button
     margin: 0;
 }
 
+.chicken-row {
+    justify-content: space-between;
+}
+
 #back-to-current-button{
     height: 100%;
     font-size: xxx-large;
@@ -14,11 +18,10 @@ input[type=number]::-webkit-outer-spin-button
 
 #egg-log-section{
     width: 25vw;
+    flex-grow: 1;
 }
 
-.flex-container{
-    display: flex;
-    align-items: center;
+#egg-button-panel{
     justify-content: space-evenly;
     height: inherit;
 }
@@ -74,9 +77,9 @@ input[type=number]::-webkit-outer-spin-button
 
 #todays-eggs {
     text-align: center;
-    font-size: 4.3em;
+    font-size: calc(2em + 3vw);
     font-weight: 700;
-    margin-top: 30px;
+    margin-top: 2vw;
 }
 
 #no-eggs {
@@ -93,10 +96,11 @@ input[type=number]::-webkit-outer-spin-button
 #view-egg-log {
     margin-top: -1px;
     margin-left: -1px;
+    max-width: var(--section-height);
 }
 
 #add-notes-section {
-    flex-grow: 1;
+    flex-grow: 2;
 }
 
 #save-notes{
@@ -108,19 +112,19 @@ input[type=number]::-webkit-outer-spin-button
 }
 
 #notes {
+    height: 90%;
     width: 100%;
     box-sizing: border-box;
-    padding: 10px;
-    border:none;
+    border: none;
     outline: none;
-    align-self: flex-end;
+    resize: none;
+    padding: 10px;
     margin-left: 5px;
     margin-top: 10px;
-    resize: none;
     background-color: rgba(0, 0, 0, 0.2);
     color: var(--cream);
     font-family: custom;
     font-weight: 700;
-    font-size: large;
+    font-size: calc(0.5em + 1vw);
     border-bottom: 3px solid;
 }

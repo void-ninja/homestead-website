@@ -1,9 +1,22 @@
 {%extends 'base.html'%}
 
 {%block content%}
-    <div class='section back-button-section'>
-        <button class='back-button' onclick='location.href={%block url_back%}#{%endblock%}'>Back</button>
-    </div>
+    <section class='row flex-container'>
+        <div class='back-button-section section'>
+            <button class='back-button' onclick='location.href={%block url_back required%}{%endblock%}'>Back</button>
+        </div>
+        <div class='section back-button-section'>
+            <form method='post' id='add-entry-form'>
+                <button class='back-button' type='submit'>Add Entry</button>
+                <input type='text' name='date_input' id='date-input' value='00/00/2024'>
+                <input type='hidden' name='form_id' value='add_entry'>
+            </form>
+            {% for message in get_flashed_messages() %}
+                <div class='log-flash'>{{ message }}</div>
+            {%endfor%}
+        </div>
+    </section>
+
     <section class='logs'>
         {%block log_content%}{%endblock%}
     </section>
