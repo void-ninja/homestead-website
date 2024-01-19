@@ -32,16 +32,18 @@
             </form>
 
         </div>
-        <div id="todays-eggs-section" class="section">
-            <h2 class='section-label'>{% if is_today %}Today's {%endif%}Egg Count:</h2>
-                {%if todays_eggs == ""%}
-                    <h3 id="no-eggs">None yet</h3>
-                {%else%}
-                    <p id="todays-eggs">{{ todays_eggs }}</p>
-                {% endif %}
-        </div>
-        <div id='view-egg-log-section' class='section'>
-            <button id="view-egg-log" class='egg-button' onclick='location.href="{{ url_for('egg_log') }}"'>View Egg Log</button>
+        <div class='mobile-flex no-wrap'>
+            <div id='todays-eggs-section' class='section'>
+                <h2 class='section-label'>{% if is_today %}Today's {%endif%}Egg Count:</h2>
+                    {%if todays_eggs == ''%}
+                        <h3 id='no-eggs'>None yet</h3>
+                    {%else%}
+                        <p class='large-info-text'>{{ todays_eggs }}</p>
+                    {% endif %}
+            </div>
+            <div id='view-egg-log-section' class='section'>
+                <button id='view-egg-log' onclick='location.href="{{ url_for('egg_log') }}"'>View Egg Log</button>
+            </div>
         </div>
         <div id='add-notes-section' class='section'>
             <form method='post'>

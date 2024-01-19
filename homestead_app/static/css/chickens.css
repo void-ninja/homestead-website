@@ -9,27 +9,29 @@ input[type=number]::-webkit-outer-spin-button
 
 .chicken-row {
     justify-content: space-between;
+    margin-top: max(-1vw, -10px);
 }
 
 #back-to-current-button{
     height: 100%;
-    font-size: xxx-large;
+    font-size: calc(1em + 2vw);
 }
 
 #egg-log-section{
     width: 25vw;
     flex-grow: 1;
+    position: relative;
 }
 
 #egg-button-panel{
-    justify-content: space-evenly;
-    height: inherit;
+    justify-content: space-between;
+    padding: 0;
 }
 
 #eggs-to-log {
     font-family: custom;
     font-weight: 700;
-    font-size: xx-large;
+    font-size: calc(1em + 2vw);
     width: 2.5em;
     height: fit-content;
 
@@ -42,61 +44,48 @@ input[type=number]::-webkit-outer-spin-button
 #egg-buttons {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    max-width: 40vw;
 }
 
 .egg-button {
-    padding: 5px 10px;
-    margin: 5px;
+    margin: 0.5vw;
+    flex-grow: 1;
+    height: 100%;
 }
 
-/* .egg-button:hover {
-    background-color: var(--light-orange);
-    margin: 3px;
-    border: 2px solid var(--cream);
-} */
-
 .egg-button:active {
-    margin: 5px;
+    margin: 0.5vw;
 }
 
 #log-eggs {
     background-color: var(--light-green);
+    max-height: 40%;
 }
-
-/* #log-eggs:hover {
-    background-color: var(--light-orange);
-} */
 
 #log-eggs:active {
     background-color: var(--dark-green);
 }
 
 #todays-eggs-section {
-    width: 13vw;
-}
-
-#todays-eggs {
-    text-align: center;
-    font-size: calc(2em + 3vw);
-    font-weight: 700;
-    margin-top: 2vw;
+    max-width: 13vw;
 }
 
 #no-eggs {
     text-align: center;
-    font-size: 2em;
+    font-size: calc(1em + 2vw);
 }
 
 #view-egg-log-section {
-    width: 12vw;
+    max-width: 10vw;
     display: flex;
-
+    padding: 0.8vw 1vw 0.8vw 1vw;
 }
 
 #view-egg-log {
     margin-top: -1px;
     margin-left: -1px;
-    max-width: var(--section-height);
+    max-width: calc(var(--section-height) - 4vw);
 }
 
 #add-notes-section {
@@ -105,6 +94,7 @@ input[type=number]::-webkit-outer-spin-button
 
 #save-notes{
     background-color: var(--light-green);
+    height: 100%;
 }
 
 #save-notes:active{
@@ -116,15 +106,57 @@ input[type=number]::-webkit-outer-spin-button
     width: 100%;
     box-sizing: border-box;
     border: none;
-    outline: none;
     resize: none;
     padding: 10px;
-    margin-left: 5px;
-    margin-top: 10px;
     background-color: rgba(0, 0, 0, 0.2);
     color: var(--cream);
     font-family: custom;
     font-weight: 700;
     font-size: calc(0.5em + 1vw);
     border-bottom: 3px solid;
+}
+
+@media screen and (max-width: 530px) {
+    
+    #eggs-to-log {
+        font-size: calc(1em + 3vw);
+    }
+
+    #egg-log-section{
+        width: 100%;
+        height: calc(var(--section-height) + 20vw)
+    }
+
+    #egg-buttons {
+        height: 100%;
+    }
+
+    #egg-button-panel{
+        gap: calc(var(--gap) * 5);
+    }
+    
+    #egg-buttons{
+        max-width: 70vw !important;
+    }
+
+    #add-notes-section{
+        width: 100%;
+    }
+
+    #todays-eggs-section, #view-egg-log-section {
+        max-width: fit-content;
+    }
+
+    #view-egg-log-section {
+        padding: 3vw;
+    }
+
+}
+
+@supports (-webkit-touch-callout: none) and (not (translate: none)) {
+    
+    #egg-button-panel *:not(:last-child) {
+        margin-right: calc(var(--gap) * 5);
+    }
+    
 }
