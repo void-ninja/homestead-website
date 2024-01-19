@@ -7,7 +7,7 @@
     --dark-orange: #bc6c25ff;
 
     --section-height: calc(3em + 11vw);
-    --gap: min(1vw, 10px);
+    --gap: min(2vw, 10px);
     --category-image-size: calc(2em + 3vw);
 }
 
@@ -112,6 +112,14 @@ input {
     justify-content: space-between;
 }
 
+.green-button {
+    background-color: var(--light-green);
+}
+
+.green-button:active {
+    background-color: var(--dark-green);
+}
+
 #date-section{
     width: 30vw;
 }
@@ -165,22 +173,23 @@ input {
 
 /* log view page */
 
-.back-button-section {
+.log-button-section {
     display: flex;
     text-align: center;
     flex-direction: column;
     justify-content: center;
 }
 
-.back-button {
+.log-button {
     font-weight: 700;
-    font-size: xx-large;
-    margin: -1px 5px 5px -3px;
+    font-size: calc(1em + 2vw);
+    margin: -1px 5px 5px 0;
     padding: 10px 3vw;
+    height: 90%;
 }
 
-.back-button:active{
-    margin: -1px 5px 5px -3px;
+.log-button:active{
+    margin: -1px 5px 5px 0;
 }
 
 #add-entry-form {
@@ -188,14 +197,13 @@ input {
     display: flex;
     align-items: center;
     gap: 0 2vw;
-    margin: 0 2vw;
 }
 
 #date-input {
     font-family: custom;
     font-weight: 700;
-    font-size: xx-large;
-    width: 5.6em;
+    font-size: calc(1em + 2vw);
+    width: 6em;
     height: fit-content;
     
     background-color: rgba(0, 0, 0, 0.2);
@@ -210,8 +218,8 @@ input {
 
 .log-flash{
     color: red;
-    position: absolute;
-    top: 30px;
+    position: relative;
+
     background-color: rgba(255, 255, 255, 0.4);
     padding: 5px 10px;
 }
@@ -221,7 +229,11 @@ table {
     margin-left: 5px;
     margin-top: 15px;
     color: var(--cream);
-    font-size: large;
+    font-size: min(calc(1em + 1vw), 20px);
+}
+
+tr:nth-child(even) td {
+    background-color: rgb(192, 143, 86);
 }
 
 th, td {
@@ -235,7 +247,7 @@ td {
 
 .log-button-small {
     font-weight: 700;
-    font-size: large;
+    font-size: calc(1em + 1vw);
     padding: 5px 10px;
     margin-left: 2px;
 }
@@ -296,8 +308,8 @@ td {
     
     button {
         font-size: calc(1em + 3vw);
-        transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
-        transition-delay: 300ms;
+        transition: transform 0.1s, background-color 0.1s, box-shadow 0.1s;
+        transition-delay: 100ms;
     }
 
     button:active{
@@ -330,9 +342,17 @@ td {
         flex-grow: 1;
     }
 
+    .mobile-overflow {
+        overflow: auto;
+    }
+
     .categories-indicator {
         height: calc(var(--category-image-size) *2);
         width: calc(var(--category-image-size) *2);
+    }
+
+    #date-section, #time-section {
+        max-height: calc(var(--section-height) - 5vw);
     }
     
     #categories-section {
@@ -346,10 +366,33 @@ td {
         position: relative;
     
     }
+
     .flex-container {
         height: 80%;
     }
 
+    /* log stuff */
+
+    .log-button-section {
+        padding: 3vw;
+    }
+
+    ::-webkit-scrollbar{
+        height: 12px;
+        width: 12px;
+        background: var(--light-orange);
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb{
+        background: var(--light-green);
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+      }
 }
 
 @supports (-webkit-touch-callout: none) and (not (translate: none)) {
@@ -361,7 +404,7 @@ td {
         margin-right: var(--gap);
     }
 
-    .flex-container *:not(:last-child) {
+    .flex-container *:not(:last-child):not(#date-section) {
         margin-right: var(--gap);
     }
 

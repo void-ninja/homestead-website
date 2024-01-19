@@ -9,7 +9,8 @@ input[type=number]::-webkit-outer-spin-button
 
 .chicken-row {
     justify-content: space-between;
-    margin-top: max(-1vw, -10px);
+    /* this must be the same as var gap but negative */
+    margin-top: max(-2vw, -10px); 
 }
 
 #back-to-current-button{
@@ -26,6 +27,7 @@ input[type=number]::-webkit-outer-spin-button
 #egg-button-panel{
     justify-content: space-between;
     padding: 0;
+    margin-bottom: var(--gap);
 }
 
 #eggs-to-log {
@@ -59,12 +61,7 @@ input[type=number]::-webkit-outer-spin-button
 }
 
 #log-eggs {
-    background-color: var(--light-green);
     max-height: 40%;
-}
-
-#log-eggs:active {
-    background-color: var(--dark-green);
 }
 
 #todays-eggs-section {
@@ -93,12 +90,7 @@ input[type=number]::-webkit-outer-spin-button
 }
 
 #save-notes{
-    background-color: var(--light-green);
     height: 100%;
-}
-
-#save-notes:active{
-    background-color: var(--dark-green);
 }
 
 #notes {

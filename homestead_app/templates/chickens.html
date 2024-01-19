@@ -24,7 +24,7 @@
                             <button id='add-egg' class='egg-button' onclick='increment(1)' type="button">+1</button>
                             <button id='subtract-egg' class='egg-button' onclick='decrement(1)' type="button">-1</button>
                         </div>
-                        <button id='log-eggs' class='egg-button' type='submit'>Log</button>
+                        <button id='log-eggs' class='egg-button green-button' type='submit'>Log</button>
                     </div>
                 </div>
                 <input type='hidden' name='form_id' value='1'>
@@ -49,7 +49,7 @@
             <form method='post'>
                 <h2 class='section-label'>{%if is_today%}Today's {%endif%}Notes:</h2>
                 <div class='flex-container'>
-                    <button id='save-notes' type='submit'>Save</button>
+                    <button id='save-notes' class='green-button' type='submit'>Save</button>
                     <textarea id='notes' name='notes'>{{ notes }}</textarea>
                 </div>
                 <input type='hidden' name='form_id' value='2'>
