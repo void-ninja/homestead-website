@@ -6,9 +6,9 @@
     --light-orange: #dda15eff;
     --dark-orange: #bc6c25ff;
 
-    --section-height: calc(3em + 11vw);
+    --section-height: min(calc(3rem + 11vw), 12em);
     --gap: min(2vw, 10px);
-    --category-image-size: calc(2em + 3vw);
+    --category-image-size: calc(2rem + 3vw);
 }
 
 @font-face {
@@ -30,7 +30,7 @@ body {
 button {
     font-family: custom;
     font-weight: 700;
-    font-size: calc(0.7em + 2vw);
+    font-size: calc(0.7rem + 2vw);
     background-color: var(--dark-orange);
     color: var(--cream);
     border: none;
@@ -190,11 +190,12 @@ input[type=number] {
     padding-bottom: 0;
 }
 
-.section{
+.rf-flex-section{
+    position: relative;
     height: var(--section-height);
     background-color: var(--light-orange);
     color: var(--cream);
-    padding: 0.4vw 1vw 0.4vw 1vw;
+    padding: 2vw 1vw;
     min-width: fit-content;
     flex-grow: 1;
     display: flex;
@@ -229,7 +230,7 @@ input[type=number] {
 
 .rf-section-blocker{
     background-color: rgba(51, 51, 51, 0.493);
-    z-index: 3;
+    z-index: 10;
     position: absolute;
     height: var(--section-height);
     width: 100%;
@@ -237,19 +238,27 @@ input[type=number] {
     left: 0;
 }
 
-.section-label {
-    font-size: medium;
-    margin: 4px 0 0 0;
+.rf-category-link{
+    height: fit-content;
+    width: fit-content;
+    margin: auto;
 }
 
-.large-info-text {
-    text-align: center;
-    font-size: calc(1em + 4vw);
-    font-weight: 700;
-    margin-top: 3vw;
+.rf-categories-indicator{
+    background-color: var(--light-green);
+    padding: 0.6rem;
+    border-radius: 10px;
+    visibility: hidden;
 }
 
-.mobile-flex {
+.rf-categories-icon{
+    height: var(--category-image-size);
+    width: var(--category-image-size);
+    visibility: visible;
+    mix-blend-mode: luminosity;
+}
+
+.rf-mobile-flex {
     display:contents;
 }
 
@@ -284,9 +293,6 @@ p.rf-section-label {
 /* log page 
 -----------------------------------------------*/
 
-
-/* log view page */
-
 .log-button-section {
     display: flex;
     text-align: center;
@@ -296,7 +302,7 @@ p.rf-section-label {
 
 .log-button {
     font-weight: 700;
-    font-size: calc(1em + 2vw);
+    font-size: calc(1rem + 2vw);
     margin: -1px 5px 5px 0;
     padding: 10px 3vw;
     height: 90%;
@@ -316,8 +322,8 @@ p.rf-section-label {
 #date-input {
     font-family: custom;
     font-weight: 700;
-    font-size: calc(1em + 2vw);
-    width: 6em;
+    font-size: calc(1rem + 2vw);
+    width: 6rem;
     height: fit-content;
     
     background-color: rgba(0, 0, 0, 0.2);
@@ -343,7 +349,7 @@ table {
     margin-left: 5px;
     margin-top: 15px;
     color: var(--cream);
-    font-size: min(calc(1em + 1vw), 20px);
+    font-size: min(calc(1rem + 1vw), 20px);
 }
 
 tr:nth-child(even) td {
@@ -361,7 +367,7 @@ td {
 
 .log-button-small {
     font-weight: 700;
-    font-size: calc(1em + 1vw);
+    font-size: calc(1rem + 1vw);
     padding: 5px 10px;
     margin-left: 2px;
 }
@@ -414,120 +420,3 @@ td {
     font-size: 2vw;
 }
 
-@media screen and (max-width: 530px) {
-    
-    :root {
-        --section-height: calc( (3em + 11vw) * 1.5)
-    }
-    
-    button {
-        font-size: calc(1em + 3vw);
-        transition: transform 0.1s, background-color 0.1s, box-shadow 0.1s;
-        transition-delay: 100ms;
-    }
-
-    button:active{
-        transition: none;
-    }
-
-    .row {
-        flex-direction: column;
-    }
-
-    .section {
-        min-width: 0 !important;
-    }
-
-    .large-info-text {
-        width: fit-content;
-        margin: 6vw auto 0;
-        font-size: calc(0.5em + 9vw);
-    }
-
-    .mobile-flex {
-        display: flex !important;
-        gap: var(--gap);
-        width: 100%;
-        flex-wrap: wrap;
-    }
-
-    .mobile-flex .section {
-        width: auto !important;
-        flex-grow: 1;
-    }
-
-    .mobile-overflow {
-        overflow: auto;
-    }
-
-    .categories-indicator {
-        height: calc(var(--category-image-size) *2);
-        width: calc(var(--category-image-size) *2);
-    }
-
-    #date-section, #time-section {
-        max-height: calc(var(--section-height) - 5vw);
-    }
-    
-    #categories-section {
-        display: none !important;
-    }
-    
-    #categories-menu-section {
-        display: flex !important;
-        width: 100%;
-        justify-content: space-around;
-        position: relative;
-    
-    }
-
-    .flex-container {
-        height: 80%;
-    }
-
-    /* log stuff */
-
-    .log-button-section {
-        padding: 3vw;
-    }
-
-    ::-webkit-scrollbar{
-        height: 12px;
-        width: 12px;
-        background: var(--light-orange);
-        border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb{
-        background: var(--light-green);
-        border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px grey;
-        border-radius: 10px;
-      }
-}
-
-@supports (-webkit-touch-callout: none) and (not (translate: none)) {
-    .row .section {
-        margin-bottom: var(--gap);
-    }
-
-    .mobile-flex *:not(:last-child):not(#date-section) {
-        margin-right: var(--gap);
-    }
-
-    .flex-container *:not(:last-child):not(#date-section) {
-        margin-right: var(--gap);
-    }
-
-    .chicken-row {
-        padding-top: 0;
-    }
-
-    input, textarea {
-        border-radius: 0;
-        padding: 1vw;
-    }
-}

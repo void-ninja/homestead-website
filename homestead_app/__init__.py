@@ -187,14 +187,14 @@ def create_app(test_config=None):
         zone = pytz.timezone(TIMEZONE)
         date = datetime.now(zone).strftime('%m/%d/%Y')#MM/DD/YYYY
         time = datetime.now(zone).strftime('%I:%M')
-        return render_template('rabbits.html', date=date, time=time)
+        return render_template('rabbits.html', is_today=True, date=date, time=time)
     
     @app.route('/garden')
     def garden():
         zone = pytz.timezone(TIMEZONE)
         date = datetime.now(zone).strftime('%m/%d/%Y')#MM/DD/YYYY
         time = datetime.now(zone).strftime('%I:%M')
-        return render_template('garden.html', date=date, time=time)
+        return render_template('garden.html', is_today=True, date=date, time=time)
 
     db.init_app(app)
     
