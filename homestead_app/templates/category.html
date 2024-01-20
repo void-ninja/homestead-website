@@ -1,49 +1,71 @@
 {% extends 'base.html' %}
 
+{% block chicken_image_style %}''{% endblock chicken_image_style %}
+{% block rabbit_image_style %}''{% endblock rabbit_image_style %}
+{% block garden_image_style %}''{% endblock garden_image_style %}
+
+{% block chicken_indicator_style %}''{% endblock chicken_indicator_style %}
+{% block rabbit_indicator_style %}''{% endblock rabbit_indicator_style %}
+{% block garden_indicator_style %}''{% endblock garden_indicator_style %}
+
 {% block content %}
 
-    <section class='row flex-container'>
+    <section class='rf-row rf-nowrap-unless-mobile'>
 
-        <div id='categories-menu-section' class='section' style='display: none;'>
-            <div class='section-blocker'></div>{# remove this to unblock the categories panel #}
-            <div class='categories-indicator' style={{self.chicken_indicator_style()}}>
-                <a class='category-link' href='{{ url_for('chickens') }}'><img class='categories-icon' src='{{ url_for('static', filename='/images/chicken-icon.png') }}'></a>
-            </div>
-            <div class='categories-indicator' style={{self.rabbit_indicator_style()}}>
-                <a class='category-link' href='{{ url_for('rabbits') }}'><img class='categories-icon' src='{{ url_for('static', filename='/images/rabbit-icon.png') }}'></a>
-            </div>
-            <div class='categories-indicator' style={{self.garden_indicator_style()}}>
-                <a class='category-link' href='{{ url_for('garden') }}'><img class='categories-icon' src='{{ url_for('static', filename='/images/vegetable-icon.png') }}'></a>
+        <div class='rf-flex-section rf-show-mobile'>
+            {# <div class='rf-section-blocker'></div>  remove this to unblock the categories panel #}
+            <div class='rf-flex'>    
+                <a class='rf-category-link' href='{{ url_for('chickens') }}'>
+                    <div class='rf-categories-indicator' style={{self.chicken_indicator_style()}}>
+                        <img class='rf-categories-icon' src='{{ url_for('static', filename='/images/chicken-icon.png') }}' style={{self.chicken_image_style()}}>
+                    </div>
+                </a>
+                <a class='rf-category-link' href='{{ url_for('rabbits') }}'>
+                    <div class='rf-categories-indicator' style={{self.rabbit_indicator_style()}}>
+                        <img class='rf-categories-icon' src='{{ url_for('static', filename='/images/rabbit-icon.png') }}' style={{self.rabbit_image_style()}}>
+                    </div>
+                </a>
+                <a class='rf-category-link' href='{{ url_for('garden') }}'>
+                    <div class='rf-categories-indicator' style={{ self.garden_indicator_style() }}>
+                        <img class='rf-categories-icon' src='{{ url_for('static', filename='/images/garden-icon.png') }}' style={{self.garden_image_style()}}>
+                    </div>
+                </a>
             </div>
         </div>
 
-        <div class='mobile-flex'>
-            <div id='date-section' class='section'>
-                <h2 class='section-label'>{%if is_today%}Today's {%endif%}Date:</h2>
-                <p class='large-info-text'>{{date}}</p>
+        <div class='rf-mobile-flex'>
+            <div class='rf-flex-section rf-mobile-short-section'>
+                <h2 class='rf-section-label'>{%if is_today%}Today's {%endif%}Date:</h2>
+                <p class='rf-large-info-text'>{{date}}</p>
             </div>
 
-            <div id='time-section' class='section'>
+            <div class='rf-flex-section rf-mobile-short-section'>
                 {%block time_section%}
-                    <h2 class='section-label'>Current Time:</h2>
-                    <p class='large-info-text'>{{time}}</p>
+                    <h2 class='rf-section-label'>Current Time:</h2>
+                    <p class='rf-large-info-text'>{{time}}</p>
                 {%endblock%}
             </div>
         </div>
-        <div id='categories-section' class='section'>
-            <div class='section-blocker'></div> {# remove this to unblock the categories panel #}
-            <p id='categories-label'>Categories</p>
+        <div class='rf-flex-section rf-hide-mobile'>
+            <div class='rf-section-blocker'></div> {# remove this to unblock the categories panel #}
+            <p class='rf-section-label'>Categories</p>
 
-            <div id='categories-icons'>
-                <div class='categories-indicator' style={% block chicken_indicator_style%}'visibility:hidden;'{% endblock chicken_indicator_style%}>
-                    <a class='category-link' href='{{ url_for('chickens') }}'><img class='categories-icon' src='{{ url_for('static', filename='/images/chicken-icon.png') }}'></a>
-                </div>
-                <div class='categories-indicator' style={% block rabbit_indicator_style%}'visibility:hidden;'{% endblock rabbit_indicator_style%}>
-                    <a class='category-link' href='{{ url_for('rabbits') }}'><img class='categories-icon' src='{{ url_for('static', filename='/images/rabbit-icon.png') }}'></a>
-                </div>
-                <div class='categories-indicator' style={% block garden_indicator_style%}'visibility:hidden;'{% endblock garden_indicator_style%}>
-                    <a class='category-link' href='{{ url_for('garden') }}'><img class='categories-icon' src='{{ url_for('static', filename='/images/vegetable-icon.png') }}'></a>
-                </div>
+            <div class='rf-flex'>
+                <a class='rf-category-link' href='{{ url_for('chickens') }}'>
+                    <div class='rf-categories-indicator' style={{self.chicken_indicator_style()}}>
+                        <img class='rf-categories-icon' src='{{ url_for('static', filename='/images/chicken-icon.png') }}' style={{self.chicken_image_style()}}>
+                    </div>
+                </a>
+                <a class='rf-category-link' href='{{ url_for('rabbits') }}'>
+                    <div class='rf-categories-indicator' style={{self.rabbit_indicator_style()}}>
+                        <img class='rf-categories-icon' src='{{ url_for('static', filename='/images/rabbit-icon.png') }}' style={{self.rabbit_image_style()}}>
+                    </div>
+                </a>
+                <a class='rf-category-link' href='{{ url_for('garden') }}'>
+                    <div class='rf-categories-indicator' style={{ self.garden_indicator_style() }}>
+                        <img class='rf-categories-icon' src='{{ url_for('static', filename='/images/garden-icon.png') }}' style={{self.garden_image_style()}}>
+                    </div>
+                </a>
             </div>
         </div>
 

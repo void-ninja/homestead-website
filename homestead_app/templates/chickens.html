@@ -2,6 +2,7 @@
 
 {% block css %}<link rel='stylesheet' href='{{ url_for('static', filename= 'css/chickens.css') }}'>{%endblock%}
 {% block chicken_indicator_style %}'visibility: visible;'{% endblock chicken_indicator_style %}
+{% block chicken_image_style %}'mix-blend-mode:normal;'{% endblock chicken_image_style %}
 
 {%block time_section%}
     {% if not is_today %}
