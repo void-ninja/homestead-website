@@ -7,40 +7,8 @@ input[type=number]::-webkit-outer-spin-button
     margin: 0;
 }
 
-.chicken-row {
-    justify-content: space-between;
-    /* this must be the same as var gap but negative */
-    margin-top: max(-2vw, -10px); 
-}
-
-#back-to-current-button{
-    height: 100%;
-    font-size: calc(1em + 2vw);
-}
-
-#egg-log-section{
-    width: 25vw;
-    flex-grow: 1;
-    position: relative;
-}
-
-#egg-button-panel{
-    justify-content: space-between;
-    padding: 0;
-    margin-bottom: var(--gap);
-}
-
-#eggs-to-log {
-    font-family: custom;
-    font-weight: 700;
-    font-size: calc(1em + 2vw);
+#rf-eggs-to-log {
     width: 2.5em;
-    height: fit-content;
-
-    background-color: rgba(0, 0, 0, 0.2);
-    border: none;
-    border-bottom: 3px solid;
-    color: var(--cream)
 }
 
 #egg-buttons {
@@ -109,28 +77,6 @@ input[type=number]::-webkit-outer-spin-button
 }
 
 @media screen and (max-width: 680px) {
-    
-    #eggs-to-log {
-        font-size: calc(1em + 3vw);
-    }
-
-    #egg-log-section{
-        width: 100%;
-        height: calc(var(--section-height) + 20vw)
-    }
-
-    #egg-buttons {
-        height: 100%;
-    }
-
-    #egg-button-panel{
-        gap: calc(var(--gap) * 5);
-    }
-    
-    #egg-buttons{
-        max-width: 70vw !important;
-    }
-
     #add-notes-section{
         width: 100%;
     }

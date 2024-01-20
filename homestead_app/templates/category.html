@@ -12,7 +12,7 @@
 
     <section class='rf-row rf-nowrap-unless-mobile'>
 
-        <div class='rf-flex-section rf-show-mobile'>
+        <div class='rf-flex-section rf-show-mobile rf-column'>
             {# <div class='rf-section-blocker'></div>  remove this to unblock the categories panel #}
             <div class='rf-flex'>    
                 <a class='rf-category-link' href='{{ url_for('chickens') }}'>
@@ -34,19 +34,19 @@
         </div>
 
         <div class='rf-mobile-flex'>
-            <div class='rf-flex-section rf-mobile-short-section'>
+            <div class='rf-flex-section rf-mobile-short-section rf-flex-column'>
                 <h2 class='rf-section-label'>{%if is_today%}Today's {%endif%}Date:</h2>
                 <p class='rf-large-info-text'>{{date}}</p>
             </div>
 
-            <div class='rf-flex-section rf-mobile-short-section'>
+            <div class='rf-flex-section rf-mobile-short-section rf-flex-column'>
                 {%block time_section%}
                     <h2 class='rf-section-label'>Current Time:</h2>
                     <p class='rf-large-info-text'>{{time}}</p>
                 {%endblock%}
             </div>
         </div>
-        <div class='rf-flex-section rf-hide-mobile'>
+        <div class='rf-flex-section rf-hide-mobile rf-flex-column'>
             <div class='rf-section-blocker'></div> {# remove this to unblock the categories panel #}
             <p class='rf-section-label'>Categories</p>
 

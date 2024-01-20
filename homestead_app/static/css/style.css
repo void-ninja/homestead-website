@@ -47,13 +47,19 @@ button:active{
     background-color: var(--light-green);
 }
 
-form {
-    height: 100%;
-    width: 100%;
-}
-
 input {
     outline: none;
+}
+
+input[type=number] {
+    font-family: custom;
+    font-weight: 700;
+    font-size: calc(1em + 2vw);
+    height: fit-content;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    border-bottom: 3px solid;
+    color: var(--cream)
 }
 
 /* mobile overrides 
@@ -109,16 +115,21 @@ input {
         width: 100%;
         flex-wrap: wrap;
     }
+
     .rf-mobile-short-section {
         height: calc(var(--section-height) - 9vw) !important;
+    }
+    
+    .rf-mobile-tall-section {
+        height: calc(var(--section-height) + 9vw) !important;
+    }
+
+    .rf-large-info-text {
+        font-size: calc(2rem + 5vw) !important;
     }
 
     .mobile-overflow {
         overflow: auto;
-    }
-
-    .flex-container {
-        height: 80%;
     }
 
     /* log stuff */
@@ -176,6 +187,7 @@ input {
     flex-wrap: wrap;
     gap: var(--gap);
     padding: var(--gap);
+    padding-bottom: 0;
 }
 
 .rf-flex-section{
@@ -187,7 +199,6 @@ input {
     min-width: fit-content;
     flex-grow: 1;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
 }
 
@@ -201,6 +212,20 @@ input {
 
 .rf-flex {
     display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+
+.rf-flex-column { /* do I need this? it might make more sense for the section to default to column */ 
+    display: flex;
+    flex-direction: column;
+}
+
+.rf-flex-wrapper {
+    width: 100%;
+    height: 100%;
 }
 
 .rf-section-blocker{
@@ -248,43 +273,22 @@ p.rf-section-label {
 
 .rf-large-info-text {
     text-align: center;
-    font-size: calc(2rem + 3vw);
+    font-size: calc(0.5rem + 5vw);
     font-weight: 700;
-    margin-top: 2vw;
+    margin-top: 1.5vw;
 }
 
-.no-wrap {
-    flex-wrap: nowrap !important;
-    justify-content: space-between;
-}
-
-.green-button {
+.rf-green-button {
     background-color: var(--light-green);
 }
 
-.green-button:active {
+.rf-green-button:active {
     background-color: var(--dark-green);
 }
 
-/* #categories-section{
-    margin-left: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    flex-grow: 1;
-    max-width: 35vw;
-} */
-
-/* #categories-icons{
-    text-align: center;
-    padding-bottom: 20px;
-    display: flex;
-    justify-content: space-around;
-    z-index: 2;
-} */
-
-
+.rf-large-button {
+    height: 100%;
+}
 
 /* log page 
 -----------------------------------------------*/
