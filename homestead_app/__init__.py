@@ -12,11 +12,10 @@ TIMEZONE = 'America/Detroit'
 app = Flask(__name__, instance_relative_config=True)
 app.config['SECRET_KEY'] = 'fcf05b1e0cdc6c6b97d5aea8ac229c54672aa9684db5a9c11571a49da63d'
 app.config.from_mapping(
-    SECRET_KEY='dev',
     DATABASE=os.path.join(app.instance_path, 'homestead.sqlite'),
 )
 
-# ensure the instance folder exists
+# ensure the instance folder exists 
 try:
     os.makedirs(app.instance_path)
 except OSError:
