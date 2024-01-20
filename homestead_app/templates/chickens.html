@@ -2,11 +2,10 @@
 
 {% block css %}<link rel='stylesheet' href='{{ url_for('static', filename= 'css/chickens.css') }}'>{%endblock%}
 {% block chicken_indicator_style %}'visibility: visible;'{% endblock chicken_indicator_style %}
-{% block chicken_image_style %}'mix-blend-mode:normal;'{% endblock chicken_image_style %}
 
 {%block time_section%}
     {% if not is_today %}
-        <button class='rf-large-button' onclick='location.href="{{ url_for('chickens') }}"'>Back to current day</button>
+        <button id='back-to-current-button' class='egg_button' onclick='location.href="{{ url_for('chickens') }}"'>Back to current day</button>
     {%else%}
         {{ super() }}
     {%endif%}
@@ -14,19 +13,18 @@
 
 {%block content%}
     {{ super() }} {# renders the top row #}
-    <section class='rf-row'>
-
-        <div class='rf-flex-section rf-mobile-tall-section rf-flex-column'>
-            <h2 class='rf-section-label'>Log Eggs</h2>
-            <form method="post" class='rf-flex-wrapper'>
-                <div class='rf-flex'>
-                    <input type='number' id='rf-eggs-to-log' name='eggs-to-log' step=1 value=0>
-                    <div class='rf-flex-column'>
-                        <div id='egg-button-panel' class='rf-flex'>
+    <section class='row flex-container chicken-row'>
+        <div id='egg-log-section' class='section'>
+            <form method="post">
+                <h2 class='section-label'>Log Eggs</h2>
+                <div class='flex-container'>
+                    <input type='number' id='eggs-to-log' name='eggs-to-log' step=1 value=0>
+                    <div id='egg-buttons'>
+                        <div id='egg-button-panel' class='flex-container'>
                             <button id='add-egg' class='egg-button' onclick='increment(1)' type="button">+1</button>
                             <button id='subtract-egg' class='egg-button' onclick='decrement(1)' type="button">-1</button>
                         </div>
-                        <button id='log-eggs' class='rf-green-button' type='submit'>Log</button>
+                        <button id='log-eggs' class='egg-button green-button' type='submit'>Log</button>
                     </div>
                 </div>
                 <input type='hidden' name='form_id' value='1'>
@@ -34,23 +32,22 @@
             </form>
 
         </div>
-
         <div class='mobile-flex no-wrap'>
-            <div id='todays-eggs-section' class='rf-flex-section'>
-                <h2 class='rf-section-label'>{% if is_today %}Today's {%endif%}Egg Count:</h2>
+            <div id='todays-eggs-section' class='section'>
+                <h2 class='section-label'>{% if is_today %}Today's {%endif%}Egg Count:</h2>
                     {%if todays_eggs == ''%}
                         <h3 id='no-eggs'>None yet</h3>
                     {%else%}
                         <p class='large-info-text'>{{ todays_eggs }}</p>
                     {% endif %}
             </div>
-            <div id='view-egg-log-section' class='rf-flex-section'>
+            <div id='view-egg-log-section' class='section'>
                 <button id='view-egg-log' onclick='location.href="{{ url_for('egg_log') }}"'>View Egg Log</button>
             </div>
         </div>
-        <div class='rf-flex-section'>
+        <div id='add-notes-section' class='section'>
             <form method='post'>
-                <h2 class='rf-section-label'>{%if is_today%}Today's {%endif%}Notes:</h2>
+                <h2 class='section-label'>{%if is_today%}Today's {%endif%}Notes:</h2>
                 <div class='flex-container'>
                     <button id='save-notes' class='green-button' type='submit'>Save</button>
                     <textarea id='notes' name='notes'>{{ notes }}</textarea>
