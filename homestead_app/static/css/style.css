@@ -6,7 +6,7 @@
     --light-orange: #dda15eff;
     --dark-orange: #bc6c25ff;
 
-    --section-height: min(calc(3rem + 11vw), 12em);
+    --section-height: max(calc(3rem + 11vw), 12em);
     --gap: min(2vw, 10px);
     --category-image-size: calc(2rem + 3vw);
 }
@@ -35,19 +35,20 @@ button {
     color: var(--cream);
     border: none;
     padding: 1vw;
-    margin: 0.5vw;
+    margin: -2px 0 0 -3px; /* to offset the box shadow and look better*/
     box-shadow: rgba(0,0,0,0.2) 2px 3px;
+    
+    height: 100%;
+    flex-grow: 1;
 }
 
 button:active{
     transform: translate(2px,3px);
     box-shadow: none;
-    border: none;
-    margin: 0.5vw;
     background-color: var(--light-green);
 }
 
-input {
+input,textarea {
     outline: none;
 }
 
@@ -59,7 +60,8 @@ input[type=number] {
     background-color: rgba(0, 0, 0, 0.2);
     border: none;
     border-bottom: 3px solid;
-    color: var(--cream)
+    color: var(--cream);
+    padding: 2px;
 }
 
 /* mobile overrides 
@@ -85,11 +87,19 @@ input[type=number] {
     
     input, textarea {
         border-radius: 0;
-        padding: 1vw;
     }
     
     .rf-row {
         flex-direction: column;
+        width: 100% !important;
+    }
+
+    .rf-mobile-w100{
+        width: 100% !important;
+    }
+
+    .rf-inner {
+        padding: 2vw !important;
     }
 
     .rf-nowrap-unless-mobile{
@@ -113,6 +123,7 @@ input[type=number] {
         display: flex !important;
         gap: var(--gap);
         width: 100%;
+        height: 100%;
         flex-wrap: wrap;
     }
 
@@ -128,14 +139,10 @@ input[type=number] {
         font-size: calc(2rem + 5vw) !important;
     }
 
+    /* log stuff */
+    
     .mobile-overflow {
         overflow: auto;
-    }
-
-    /* log stuff */
-
-    .log-button-section {
-        padding: 3vw;
     }
 
     ::-webkit-scrollbar{
@@ -156,7 +163,7 @@ input[type=number] {
       }
 }
 
-/* hacks to replace gap and some wierd stuff on old safari on iOS */
+/* hacks to replace gap and some weird stuff on old safari on iOS */
 
 @supports (-webkit-touch-callout: none) and (not (translate: none)) {
     .row .section {
@@ -171,20 +178,17 @@ input[type=number] {
         margin-right: var(--gap);
     }
 
-    .chicken-row {
-        padding-top: 0;
-    }
-
 }
 
 /* category page 
 -----------------------------------------------*/
 
 .rf-row{
-    width: 100%;
+    width: 97%;
+    max-width: 1300px;
+    margin: 0 auto;
     display: flex;
     justify-content: start;
-    flex-wrap: wrap;
     gap: var(--gap);
     padding: var(--gap);
     padding-bottom: 0;
@@ -192,14 +196,26 @@ input[type=number] {
 
 .rf-flex-section{
     position: relative;
-    height: var(--section-height);
     background-color: var(--light-orange);
     color: var(--cream);
-    padding: 2vw 1vw;
-    min-width: fit-content;
+    padding: 1vw;
     flex-grow: 1;
     display: flex;
     justify-content: space-between;
+
+    height: unset !important;
+}
+
+.rf-width75{
+    width: 75%;
+}
+
+.rf-width50{
+    width: 50%;
+}
+
+.rf-width25{
+    width: 25%;
 }
 
 .rf-show-mobile {
@@ -216,23 +232,31 @@ input[type=number] {
     justify-content: space-around;
     width: 100%;
     height: 100%;
+    gap: var(--gap)
 }
 
 .rf-flex-column { /* do I need this? it might make more sense for the section to default to column */ 
     display: flex;
     flex-direction: column;
+    gap: var(--gap);
+    height: 100%;
 }
 
-.rf-flex-wrapper {
+.rf-inner {
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap);
+    padding: 0.5vw;
 }
 
 .rf-section-blocker{
     background-color: rgba(51, 51, 51, 0.493);
     z-index: 10;
     position: absolute;
-    height: var(--section-height);
+    height: 100%;
     width: 100%;
     top:0;
     left: 0;
@@ -264,7 +288,7 @@ input[type=number] {
 
 .rf-section-label {
     font-size: max(calc(0.5rem + 2vw), 1rem);
-    margin: -1vw 0 0 0.15rem;
+    margin: 0 0 0 0.15rem;
 }
 
 p.rf-section-label {
@@ -275,7 +299,7 @@ p.rf-section-label {
     text-align: center;
     font-size: calc(0.5rem + 5vw);
     font-weight: 700;
-    margin-top: 1.5vw;
+    margin: auto;
 }
 
 .rf-green-button {

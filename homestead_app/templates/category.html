@@ -14,7 +14,7 @@
 
         <div class='rf-flex-section rf-show-mobile rf-column'>
             {# <div class='rf-section-blocker'></div>  remove this to unblock the categories panel #}
-            <div class='rf-flex'>    
+            <div class='rf-flex rf-inner'>    
                 <a class='rf-category-link' href='{{ url_for('chickens') }}'>
                     <div class='rf-categories-indicator' style={{self.chicken_indicator_style()}}>
                         <img class='rf-categories-icon' src='{{ url_for('static', filename='/images/chicken-icon.png') }}' style={{self.chicken_image_style()}}>
@@ -36,13 +36,17 @@
         <div class='rf-mobile-flex'>
             <div class='rf-flex-section rf-mobile-short-section rf-flex-column'>
                 <h2 class='rf-section-label'>{%if is_today%}Today's {%endif%}Date:</h2>
-                <p class='rf-large-info-text'>{{date}}</p>
+                <div class='rf-inner'>
+                    <p class='rf-large-info-text'>{{date}}</p>
+                </div>
             </div>
 
             <div class='rf-flex-section rf-mobile-short-section rf-flex-column'>
                 {%block time_section%}
                     <h2 class='rf-section-label'>Current Time:</h2>
-                    <p class='rf-large-info-text'>{{time}}</p>
+                    <div class='rf-inner'>
+                        <p class='rf-large-info-text'>{{time}}</p>
+                    </div>
                 {%endblock%}
             </div>
         </div>

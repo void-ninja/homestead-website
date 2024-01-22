@@ -16,17 +16,17 @@
     {{ super() }} {# renders the top row #}
     <section class='rf-row'>
 
-        <div class='rf-flex-section rf-mobile-tall-section rf-flex-column'>
+        <div class='rf-flex-section rf-mobile-tall-section rf-flex-column rf-width50 rf-mobile-w100'>
             <h2 class='rf-section-label'>Log Eggs</h2>
-            <form method="post" class='rf-flex-wrapper'>
+            <form method="post" class='rf-inner'>
                 <div class='rf-flex'>
                     <input type='number' id='rf-eggs-to-log' name='eggs-to-log' step=1 value=0>
-                    <div class='rf-flex-column'>
-                        <div id='egg-button-panel' class='rf-flex'>
-                            <button id='add-egg' class='egg-button' onclick='increment(1)' type="button">+1</button>
-                            <button id='subtract-egg' class='egg-button' onclick='decrement(1)' type="button">-1</button>
+                    <div class='rf-flex-column rf-width50'>
+                        <div class='rf-flex'>
+                            <button onclick='increment(1)' type="button">+1</button>
+                            <button onclick='decrement(1)' type="button">-1</button>
                         </div>
-                        <button id='log-eggs' class='rf-green-button' type='submit'>Log</button>
+                        <button class='rf-green-button' type='submit'>Log</button>
                     </div>
                 </div>
                 <input type='hidden' name='form_id' value='1'>
@@ -35,25 +35,32 @@
 
         </div>
 
-        <div class='mobile-flex no-wrap'>
-            <div id='todays-eggs-section' class='rf-flex-section'>
+        <div class='rf-mobile-flex'>
+            <div class='rf-flex-section rf-flex-column rf-width25'>
                 <h2 class='rf-section-label'>{% if is_today %}Today's {%endif%}Egg Count:</h2>
+                <div class='rf-inner'>
                     {%if todays_eggs == ''%}
-                        <h3 id='no-eggs'>None yet</h3>
+                        <h3 id='rf-no-eggs'>None yet</h3>
                     {%else%}
-                        <p class='large-info-text'>{{ todays_eggs }}</p>
+                        <p class='rf-large-info-text'>{{ todays_eggs }}</p>
                     {% endif %}
+                </div>
             </div>
-            <div id='view-egg-log-section' class='rf-flex-section'>
-                <button id='view-egg-log' onclick='location.href="{{ url_for('egg_log') }}"'>View Egg Log</button>
+            <div class='rf-flex-section rf-width25'>
+                <div class='rf-inner'>
+                    <button class='rf-large-button' onclick='location.href="{{ url_for('egg_log') }}"'>View Egg Log</button>
+                </div>
             </div>
         </div>
-        <div class='rf-flex-section'>
-            <form method='post'>
-                <h2 class='rf-section-label'>{%if is_today%}Today's {%endif%}Notes:</h2>
-                <div class='flex-container'>
-                    <button id='save-notes' class='green-button' type='submit'>Save</button>
-                    <textarea id='notes' name='notes'>{{ notes }}</textarea>
+
+    </section>
+    <section class='rf-row'>
+        <div class='rf-flex-section rf-flex-column'>
+            <h2 class='rf-section-label'>{%if is_today%}Today's {%endif%}Notes:</h2>
+            <form method='post' class='rf-inner'>
+                <div class='rf-flex'>
+                    <button class='rf-green-button' type='submit'>Save</button>
+                    <textarea id='rf-notes' name='notes' rows=5>{{ notes }}</textarea>
                 </div>
                 <input type='hidden' name='form_id' value='2'>
                 <input type='hidden' name='form_date' value='{{ date }}'>
