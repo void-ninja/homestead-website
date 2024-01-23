@@ -7,7 +7,7 @@ input[type=number]::-webkit-outer-spin-button
     margin: 0;
 }
 
-#rf-eggs-to-log {
+#eggs-to-log {
     width: 2.5em;
 }
 
@@ -18,14 +18,7 @@ input[type=number]::-webkit-outer-spin-button
 }
 
 #rf-notes {
-    border: none;
-    resize: none;
     padding: 5px;
-    background-color: rgba(0, 0, 0, 0.2);
-    color: var(--cream);
-    font-family: custom;
-    font-weight: 700;
     font-size: calc(0.5em + 1vw);
-    border-bottom: 3px solid;
     flex-grow: 3;
 }

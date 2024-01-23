@@ -6,34 +6,17 @@
 
 {%block time_section%}
     {% if not is_today %}
-        <button class='rf-large-button' onclick='location.href="{{ url_for('chickens') }}"'>Back to current day</button>
-    {%else%}
-        {{ super() }}
+    <div class='rf-flex-section rf-flex-column'>
+        <div class='rf-inner'>
+            <button class='rf-large-button rf-m-smaller-text-button' onclick='location.href="{{ url_for('chickens') }}"'>Back to current day</button>
+        </div>
+    </div>   
     {%endif%}
 {%endblock%}
 
 {%block content%}
     {{ super() }} {# renders the top row #}
     <section class='rf-row'>
-
-        <div class='rf-flex-section rf-mobile-tall-section rf-flex-column rf-width50 rf-mobile-w100'>
-            <h2 class='rf-section-label'>Log Eggs</h2>
-            <form method="post" class='rf-inner'>
-                <div class='rf-flex'>
-                    <input type='number' id='rf-eggs-to-log' name='eggs-to-log' step=1 value=0>
-                    <div class='rf-flex-column rf-width50'>
-                        <div class='rf-flex'>
-                            <button onclick='increment(1)' type="button">+1</button>
-                            <button onclick='decrement(1)' type="button">-1</button>
-                        </div>
-                        <button class='rf-green-button' type='submit'>Log</button>
-                    </div>
-                </div>
-                <input type='hidden' name='form_id' value='1'>
-                <input type='hidden' name='form_date' value='{{ date }}'>
-            </form>
-
-        </div>
 
         <div class='rf-mobile-flex'>
             <div class='rf-flex-section rf-flex-column rf-width25'>
@@ -48,9 +31,28 @@
             </div>
             <div class='rf-flex-section rf-width25'>
                 <div class='rf-inner'>
-                    <button class='rf-large-button' onclick='location.href="{{ url_for('egg_log') }}"'>View Egg Log</button>
+                    <button class='rf-large-button rf-m-smaller-text-button' onclick='location.href="{{ url_for('egg_log') }}"'>View Egg Log</button>
                 </div>
             </div>
+        </div>
+
+        <div class='rf-flex-section rf-flex-column rf-width50 rf-mobile-w100'>
+            <h2 class='rf-section-label'>Log Eggs</h2>
+            <form method="post" class='rf-inner'>
+                <div class='rf-flex'>
+                    <input type='number' id='eggs-to-log' name='eggs-to-log' step=1 value=0>
+                    <div class='rf-flex-column rf-width50'>
+                        <div class='rf-flex'>
+                            <button onclick='decrement(1)' type="button">-1</button>
+                            <button onclick='increment(1)' type="button">+1</button>
+                        </div>
+                        <button class='rf-green-button' type='submit'>Log</button>
+                    </div>
+                </div>
+                <input type='hidden' name='form_id' value='1'>
+                <input type='hidden' name='form_date' value='{{ date }}'>
+            </form>
+
         </div>
 
     </section>
