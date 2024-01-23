@@ -6,7 +6,6 @@
     --light-orange: #dda15eff;
     --dark-orange: #bc6c25ff;
 
-    --section-height: min(calc(3rem + 11vw), 12em);
     --gap: min(2vw, 10px);
     --category-image-size: calc(2rem + 3vw);
 }
@@ -25,6 +24,8 @@ body {
     font-family: custom, sans-serif;
     letter-spacing: 1px;
     margin: 0;
+    overflow-x: hidden;
+    position: relative;
 }
 
 button {
@@ -35,31 +36,48 @@ button {
     color: var(--cream);
     border: none;
     padding: 1vw;
-    margin: 0.5vw;
+    margin: -2px 0 0 -3px; /* to offset the box shadow and look better*/
     box-shadow: rgba(0,0,0,0.2) 2px 3px;
+    
+    flex-grow: 1;
 }
 
 button:active{
     transform: translate(2px,3px);
     box-shadow: none;
-    border: none;
-    margin: 0.5vw;
     background-color: var(--light-green);
 }
 
-input {
+input,textarea {
     outline: none;
-}
-
-input[type=number] {
+    resize: none;
     font-family: custom;
     font-weight: 700;
     font-size: calc(1em + 2vw);
-    height: fit-content;
     background-color: rgba(0, 0, 0, 0.2);
     border: none;
     border-bottom: 3px solid;
-    color: var(--cream)
+    color: var(--cream);
+    padding: 2px;
+
+    border-radius: 0;
+}
+
+table {
+    border-spacing: 0.5rem;
+    margin-left: -0.5rem;
+    margin-top: -0.5rem;
+    color: var(--cream);
+    font-size: 1.5rem;
+}
+
+tr:nth-child(even) td {
+    background-color: rgb(194, 144, 88);
+}
+
+th, td {
+    background-color: var(--light-orange);
+    padding: 0.4rem 0.8rem;
 }
 
 /* mobile overrides 
@@ -68,13 +86,13 @@ input[type=number] {
 @media screen and (max-width: 680px) {
     
     :root {
-        --section-height: calc( (3rem + 11vw) * 1.5);
         --category-image-size: calc((2rem + 3vw) * 1.7);
-        --section-height: calc(4rem + 18vw);
+        --gap: min(4vw, 10px);
     }
     
     button {
-        font-size: calc(1rem + 3vw);
+        font-size: calc(2rem + 5vw);
+        padding: 4vw 1vw;
         transition: transform 0.1s, background-color 0.1s, box-shadow 0.1s;
         transition-delay: 100ms;
     }
@@ -83,13 +101,30 @@ input[type=number] {
         transition: none;
     }
     
-    input, textarea {
-        border-radius: 0;
-        padding: 1vw;
+    input {
+        font-size: calc(0.5rem + 6vw) !important;
+    }
+    
+    textarea {
+        font-size: calc(0.5rem + 3vw) !important;
     }
     
     .rf-row {
         flex-direction: column;
+        width: 100% !important;
+    }
+
+    .rf-mobile-w100{
+        width: 100% !important;
+    }
+
+    .rf-m-smaller-text-button {
+        font-size: calc(1rem + 4vw);
+        margin: 0.3rem;
+    }
+
+    .rf-inner {
+        padding: 2vw !important;
     }
 
     .rf-nowrap-unless-mobile{
@@ -116,26 +151,26 @@ input[type=number] {
         flex-wrap: wrap;
     }
 
-    .rf-mobile-short-section {
-        height: calc(var(--section-height) - 9vw) !important;
-    }
-    
-    .rf-mobile-tall-section {
-        height: calc(var(--section-height) + 9vw) !important;
-    }
-
     .rf-large-info-text {
         font-size: calc(2rem + 5vw) !important;
     }
 
-    .mobile-overflow {
-        overflow: auto;
+    /* log stuff */
+    
+    .rf-mobile-overflow {
+        overflow-x: auto;
     }
 
-    /* log stuff */
+    .rf-log-button-small {
+        font-size: calc(2rem + 2vw) !important;
+    }
 
-    .log-button-section {
-        padding: 3vw;
+    .rf-note-display {
+        width: 95% !important;
+    }
+
+    .rf-note-text {
+        width: 80% !important;
     }
 
     ::-webkit-scrollbar{
@@ -154,37 +189,53 @@ input[type=number] {
         box-shadow: inset 0 0 5px grey;
         border-radius: 10px;
       }
+
 }
 
-/* hacks to replace gap and some wierd stuff on old safari on iOS */
+/* hacks to replace gap and some weird stuff on old safari on iOS */
 
 @supports (-webkit-touch-callout: none) and (not (translate: none)) {
-    .row .section {
+    .rf-row .rf-flex-section:not(:last-child):not(.rf-width25) {
         margin-bottom: var(--gap);
     }
 
-    .rf-mobile-flex *:not(:last-child):not(#date-section) {
+    .rf-row .rf-flex-section.rf-width25:not(:last-child) {
         margin-right: var(--gap);
     }
 
-    .flex-container *:not(:last-child):not(#date-section) {
+    .rf-inner *:not(:last-child){
         margin-right: var(--gap);
     }
 
-    .chicken-row {
-        padding-top: 0;
+    .rf-flex-column .rf-flex {
+        margin-bottom: var(--gap);
     }
 
+    .rf-green-button:not(:last-child) {
+        margin-left: var(--gap);
+    }
+
+    .rf-row:not(.rf-nowrap-unless-mobile) .rf-mobile-flex {
+        margin-bottom: var(--gap);
+    }
+
+    #rf-date-input {
+        max-width: 12.4rem !important;
+    }
+
+    input {
+        font-size: calc(1rem + 6vw) !important;
+    }
 }
-
 /* category page 
 -----------------------------------------------*/
 
 .rf-row{
-    width: 100%;
+    width: 97%;
+    max-width: 1300px;
+    margin: 0 auto;
     display: flex;
     justify-content: start;
-    flex-wrap: wrap;
     gap: var(--gap);
     padding: var(--gap);
     padding-bottom: 0;
@@ -192,14 +243,24 @@ input[type=number] {
 
 .rf-flex-section{
     position: relative;
-    height: var(--section-height);
     background-color: var(--light-orange);
     color: var(--cream);
-    padding: 2vw 1vw;
-    min-width: fit-content;
+    padding: 1vw;
     flex-grow: 1;
     display: flex;
     justify-content: space-between;
+}
+
+.rf-width75{
+    width: 75%;
+}
+
+.rf-width50{
+    width: 50%;
+}
+
+.rf-width25{
+    width: 25%;
 }
 
 .rf-show-mobile {
@@ -215,24 +276,30 @@ input[type=number] {
     align-items: center;
     justify-content: space-around;
     width: 100%;
-    height: 100%;
+    gap: var(--gap)
 }
 
 .rf-flex-column { /* do I need this? it might make more sense for the section to default to column */ 
     display: flex;
     flex-direction: column;
+    gap: var(--gap);
 }
 
-.rf-flex-wrapper {
+.rf-inner {
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap);
+    padding: 0.5vw;
 }
 
 .rf-section-blocker{
     background-color: rgba(51, 51, 51, 0.493);
     z-index: 10;
     position: absolute;
-    height: var(--section-height);
+    height: 100%;
     width: 100%;
     top:0;
     left: 0;
@@ -264,7 +331,7 @@ input[type=number] {
 
 .rf-section-label {
     font-size: max(calc(0.5rem + 2vw), 1rem);
-    margin: -1vw 0 0 0.15rem;
+    margin: 0 0 0 0.15rem;
 }
 
 p.rf-section-label {
@@ -275,7 +342,7 @@ p.rf-section-label {
     text-align: center;
     font-size: calc(0.5rem + 5vw);
     font-weight: 700;
-    margin-top: 1.5vw;
+    margin: auto;
 }
 
 .rf-green-button {
@@ -293,91 +360,30 @@ p.rf-section-label {
 /* log page 
 -----------------------------------------------*/
 
-.log-button-section {
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.log-button {
-    font-weight: 700;
-    font-size: calc(1rem + 2vw);
-    margin: -1px 5px 5px 0;
-    padding: 10px 3vw;
-    height: 90%;
-}
-
-.log-button:active{
-    margin: -1px 5px 5px 0;
-}
-
-#add-entry-form {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 0 2vw;
-}
-
-#date-input {
-    font-family: custom;
-    font-weight: 700;
-    font-size: calc(1rem + 2vw);
-    width: 6rem;
-    height: fit-content;
-    
-    background-color: rgba(0, 0, 0, 0.2);
-    border: none;
-    border-bottom: 3px solid;
-    color: var(--cream)
-}
-
-#date-input:focus {
-    outline: none;
-}
-
-.log-flash{
+.rf-log-flash{
     color: red;
     position: relative;
-
     background-color: rgba(255, 255, 255, 0.4);
     padding: 5px 10px;
 }
 
-table {
-    border-spacing: 5px;
-    margin-left: 5px;
-    margin-top: 15px;
-    color: var(--cream);
-    font-size: min(calc(1rem + 1vw), 20px);
+#rf-date-input {
+    max-width: 5.8em;
 }
 
-tr:nth-child(even) td {
-    background-color: rgb(192, 143, 86);
-}
-
-th, td {
-    background-color: var(--light-orange);
-    padding: 5px 10px;
-}
-
-td {
-    height: 42px;
-}
-
-.log-button-small {
+.rf-log-button-small {
     font-weight: 700;
-    font-size: calc(1rem + 1vw);
+    font-size: calc(1rem + 2vw);
     padding: 5px 10px;
     margin-left: 2px;
 }
 
-.log-button-small:active {
+.rf-log-button-small:active {
     margin-left: 2px;
 }
 
-.screen-overlay{
-    position: absolute; /* Sit on top of the page content */
+.rf-screen-overlay{
+    position: fixed; /* Sit on top of the page content */
     display: none;
     width: 100%; /* Full width (cover the whole page) */
     height: 100%; /* Full height (cover the whole page) */
@@ -386,37 +392,38 @@ td {
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-    z-index: 1; /* Specify a stack order in case you're using a different order for other elements */
+    z-index: 1; /* Specify a stack order*/
 }
 
-.note-display {
+.rf-note-display {
     position: absolute;
     visibility: hidden;
     background-color: var(--light-orange);
     border: 2px solid var(--light-green);
-    height: 35vw;
-    width: 35vw;
+    color: var(--cream);
+    height: 80vh;
+    width: 60vw;
     padding: 1vw;
     inset: 0;
     margin: auto;
     z-index: 2;
+
+    font-size: calc(0.7rem + 1vw);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.delete-display {
-    height: 20vw;
-}
-
-.note-text {
-    color: var(--cream);
-    max-width: 30vw;
-}
-
-.close-button {
+.rf-close-button {
     position: absolute;
-    right: 1vw;
-    top: 1vw;
-    height: 3vw;
-    width: 3vw;
-    font-size: 2vw;
+    right: 0.3rem;
+    top: 0.3rem;
+    padding: 0.2rem 0.5rem;
 }
 
+.rf-note-text {
+    width: 90%;
+    font-size: calc(0.7rem + 3vw);
+    padding: 0.3rem;
+}

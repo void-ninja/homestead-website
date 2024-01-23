@@ -7,94 +7,18 @@ input[type=number]::-webkit-outer-spin-button
     margin: 0;
 }
 
-#rf-eggs-to-log {
+#eggs-to-log {
     width: 2.5em;
 }
 
-#egg-buttons {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    max-width: 40vw;
-}
-
-.egg-button {
-    margin: 0.5vw;
-    flex-grow: 1;
-    height: 100%;
-}
-
-.egg-button:active {
-    margin: 0.5vw;
-}
-
-#log-eggs {
-    max-height: 40%;
-}
-
-#todays-eggs-section {
-    max-width: 13vw;
-}
-
-#no-eggs {
+#rf-no-eggs {
     text-align: center;
     font-size: calc(1em + 2vw);
+    margin: auto 0;
 }
 
-#view-egg-log-section {
-    max-width: 10vw;
-    display: flex;
-    padding: 0.8vw 1vw 0.8vw 1vw;
-}
-
-#view-egg-log {
-    margin-top: -1px;
-    margin-left: -1px;
-    max-width: calc(var(--section-height) - 4vw);
-}
-
-#add-notes-section {
-    flex-grow: 2;
-}
-
-#save-notes{
-    height: 100%;
-}
-
-#notes {
-    height: 90%;
-    width: 100%;
-    box-sizing: border-box;
-    border: none;
-    resize: none;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.2);
-    color: var(--cream);
-    font-family: custom;
-    font-weight: 700;
+#rf-notes {
+    padding: 5px;
     font-size: calc(0.5em + 1vw);
-    border-bottom: 3px solid;
-}
-
-@media screen and (max-width: 680px) {
-    #add-notes-section{
-        width: 100%;
-    }
-
-    #todays-eggs-section, #view-egg-log-section {
-        max-width: fit-content;
-    }
-
-    #view-egg-log-section {
-        padding: 3vw;
-    }
-
-}
-
-@supports (-webkit-touch-callout: none) and (not (translate: none)) {
-    
-    #egg-button-panel *:not(:last-child) {
-        margin-right: calc(var(--gap) * 5);
-    }
-    
+    flex-grow: 3;
 }
