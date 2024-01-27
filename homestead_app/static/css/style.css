@@ -173,23 +173,6 @@ th, td {
         width: 80% !important;
     }
 
-    ::-webkit-scrollbar{
-        height: 12px;
-        width: 12px;
-        background: var(--light-orange);
-        border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb{
-        background: var(--light-green);
-        border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px grey;
-        border-radius: 10px;
-      }
-
 }
 
 /* hacks to replace gap and some weird stuff on old safari on iOS */
@@ -357,8 +340,31 @@ p.rf-section-label {
     height: 100%;
 }
 
+
+::-webkit-scrollbar{
+    height: 12px;
+    width: 12px;
+    background: var(--light-orange);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background: var(--light-green);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
 /* log page 
 -----------------------------------------------*/
+
+.rf-overflow-y {
+    overflow-y: auto;
+    max-height: 90vh;
+}
 
 .rf-log-flash{
     color: red;
